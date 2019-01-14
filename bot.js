@@ -1,14 +1,15 @@
-const Files = require(require('path').join(__dirname, 'js', 'Main.js')).Files;
+const Discord = require('discord.js');
+const client = new Discord.Client();
 
-if(!process.send) {
-
-Files.initStandalone();
-
-} else {
-
-process.on('message', function(content) {
-	Files.initBotTest(content);
+client.on('ready', () => {
+    console.log('I am ready!');
 });
 
-}
-client.login(process.env.BOT_TOKEN)
+client.on('message', message => {
+    if (message.content === 'ping') {
+    	message.reply('pong');
+  	}
+});
+
+// THIS  MUST  BE  THIS  WAY
+client.login(process.env.BOT_TOKEN);
